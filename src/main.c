@@ -19,7 +19,7 @@ int main() {
         return 1;
     }
 
-    play_music("assets/background_music.wav");
+    play_music("assets/sounds/background_music.wav");
 
     // Initialize maze, player, and enemy
     char maze[MAX_ROWS][MAX_COLS];
@@ -51,7 +51,7 @@ int main() {
         // Handle quitting
         if (input == 'q' || input == 'Q') {
             printf("Thanks for playing!\n");
-            play_sound("assets/game_over.wav");
+            play_sound("assets/sounds/game_over.wav");
             break;
         }
 
@@ -59,11 +59,11 @@ int main() {
         if (move_player(&player, maze, input)) {
             update_score(&player, 100); // Bonus for reaching the exit
             printf("Congratulations! You found the exit!\n");
-            play_sound("assets/victory.wav");
+            play_sound("assets/sounds/victory.wav");
             break;
         } else {
             update_score(&player, 10); // Points for valid moves
-            play_sound("assets/move.wav");
+            play_sound("assets/sounds/move.wav");
         }
 
         // Move the enemy
@@ -74,7 +74,7 @@ int main() {
             printf("Game Over! You were caught by the enemy!\n");
             game_over = 1;
             update_score(&player, -50); // Deduct points for being caught
-            play_sound("assets/game_over.wav");
+            play_sound("assets/sounds/game_over.wav");
         }
     }
 
