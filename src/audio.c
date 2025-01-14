@@ -1,15 +1,19 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-void init_audio() {
+int init_audio() {
     if (SDL_Init(SDL_INIT_AUDIO) < 0) {
         fprintf(stderr, "SDL Init Error: %s\n", SDL_GetError());
-        exit(1);
+        return 0; // Indicate failure
     }
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
         fprintf(stderr, "Mix Open Audio Error: %s\n", Mix_GetError());
-        exit(1);
+        SDL_Quit();
+        return 0; // Indicate failure
     }
+    return 1; // Indicate success
 }
 
 void play_sound(const char *file) {

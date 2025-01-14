@@ -12,7 +12,7 @@ int load_config(Config *config, const char *file_path) {
     FILE *file = fopen(file_path, "r");
     if (!file) {
         fprintf(stderr, "Error: Could not open configuration file: %s\n", file_path);
-        exit(EXIT_FAILURE);
+        return 0; // Indicate failure
     }
 
     // Initialize default values
@@ -50,4 +50,5 @@ int load_config(Config *config, const char *file_path) {
     }
 
     fclose(file);
+    return 1; // Indicate success
 }
