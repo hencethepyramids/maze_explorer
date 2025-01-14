@@ -1,0 +1,18 @@
+# Maze Explorer Configuration
+maze_rows=10
+maze_cols=10
+player_symbol=P
+exit_symbol=E
+wall_symbol=#
+path_symbol= 
+
+# Audio Configuration
+background_music=assets/sounds/background_music.wav
+move_sound=assets/sounds/move.wav
+victory_sound=assets/sounds/victory.wav
+defeat_sound=assets/sounds/game_over.wav
+
+# Colors (optional, can be extended)
+player_color=32  # Green
+enemy_color=31   # Red
+exit_color=33    # Yellow
