@@ -4,6 +4,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "audio.h"
+#include <string.h>
 
 int main() {
     // Load configuration
@@ -12,6 +13,39 @@ int main() {
         fprintf(stderr, "Error loading configuration file.\n");
         return 1;
     } 
+
+    // Difficulty selection
+    int difficulty;
+    printf("Choose your difficulty level by pressing the corresponding number:\n");
+    printf("1. Easy\n");
+    printf("2. Medium\n");
+    printf("3. Hard\n");
+    printf("Enter 1, 2, or 3: ");
+    while (scanf("%d", &difficulty) != 1 || difficulty < 1 || difficulty > 3) {
+        // Handle invalid input
+        printf("Invalid choice. Please enter 1, 2, or 3: ");
+        while (getchar() != '\n'); // Clear input buffer
+    }
+
+    // Set maze file based on difficulty
+    const char *maze_file = "";
+    switch (difficulty) {
+        case 1: 
+            maze_file = "assets/mazes/maze_easy.txt";
+            break;
+        case 2:
+            maze_file = "assets/mazes/maze_medium.txt";
+            break;
+        case 3:
+            maze_file = "assets/mazes/maze_hard.txt";
+            break;
+        default:
+            // Default is already handled by input validation
+            break;
+    }
+
+    // Update config with the selected maze file
+    strcpy(config.maze_file, maze_file);
 
     // Initialize audio
     if (!init_audio()) {
@@ -26,7 +60,7 @@ int main() {
     Player player;
     Enemy enemy;
 
-    // Ensure load_maze is called with the right parameters
+    // Load the maze with the selected difficulty file
     load_maze(maze, config.maze_file, &config.maze_rows, &config.maze_cols);
 
     generate_maze(maze, config.maze_rows, config.maze_cols, &config);
