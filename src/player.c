@@ -1,15 +1,12 @@
+// player.c
 #include <stdio.h>
 #include "player.h"
 #include "maze.h"
+#include "utils.h"
 
 void initialize_player(Player *player) {
-    player->x = 1; // Starting position (row)
-    player->y = 1; // Starting position (column)
-}
-
-void initialize_player(Player *player) {
-    player->x = 0;
-    player->y = 0;
+    player->x = 0;   // Starting position (row)
+    player->y = 0;   // Starting position (column)
     player->score = 0; // Initialize score
 }
 

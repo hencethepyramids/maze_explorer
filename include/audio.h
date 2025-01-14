@@ -2,7 +2,7 @@
 #define AUDIO_H
 
 // Initializes SDL audio and Mixer
-void init_audio();
+int init_audio(void);
 
 // Plays a single sound effect
 void play_sound(const char *file);

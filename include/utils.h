@@ -2,6 +2,7 @@
 #define UTILS_H
 
 typedef struct {
+    char maze_file[100];
     int maze_rows;
     int maze_cols;
     char player_symbol;
@@ -10,7 +11,9 @@ typedef struct {
     char path_symbol;
 } Config;
 
+void delay(int milliseconds);
+
 // Function prototypes
-void load_config(Config *config, const char *file_path);
+int load_config(Config *config, const char *filename);
 
 #endif

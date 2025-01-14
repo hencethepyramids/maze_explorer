@@ -1,9 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h> // For usleep
 #include "utils.h"
 
-void load_config(Config *config, const char *file_path) {
+void delay(int milliseconds) {
+    usleep(milliseconds * 1000); // Convert to microseconds
+}
+
+int load_config(Config *config, const char *file_path) {
     FILE *file = fopen(file_path, "r");
     if (!file) {
         fprintf(stderr, "Error: Could not open configuration file: %s\n", file_path);

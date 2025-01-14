@@ -8,10 +8,10 @@
 int main() {
     // Load configuration
     Config config;
-    if (!load_config(&config, "assets/default_config.txt")) {
+    if (load_config(&config, "assets/default_config.txt") == 0) {
         fprintf(stderr, "Error loading configuration file.\n");
         return 1;
-    }
+    } 
 
     // Initialize audio
     if (!init_audio()) {
@@ -25,6 +25,9 @@ int main() {
     char maze[MAX_ROWS][MAX_COLS];
     Player player;
     Enemy enemy;
+
+    // Ensure load_maze is called with the right parameters
+    load_maze(maze, config.maze_file, &config.maze_rows, &config.maze_cols);
 
     generate_maze(maze, config.maze_rows, config.maze_cols, &config);
     initialize_player(&player);
